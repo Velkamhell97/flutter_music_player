@@ -1,4 +1,3 @@
-//-- Song Class
 class Song {
   final String title;
   final String author;
@@ -54,7 +53,8 @@ class Song {
     image: 'assets/images/aurora.jpg',
     // file: 'assets/audios/Breaking-Benjamin-Far-Away.mp3',
     // file: 'assets/audios/example.mp3',
-    file: 'assets/audios/This_Side_of_Paradise-Coyote_Theory.mp3',
+    // file: 'assets/audios/This_Side_of_Paradise-Coyote_Theory.mp3',
+    file: 'assets/audios/The_Living_Tombstone.mp3',
     letter: _letter
   );
 

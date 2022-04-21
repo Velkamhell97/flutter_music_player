@@ -17,9 +17,12 @@ class SongDisc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      /// Con el padding se simula un borde, esto da el efecto que sea un borde gradiente pero la verdad es
+      /// que el disco tapa el resto del contenido
       padding: EdgeInsets.all(borderWidth),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
+        /// La imagen tapa el color de fondo que es un gradiente
         gradient: LinearGradient(
           begin: Alignment.topLeft, 
           colors: [Color(0xff484750), Color(0xff1E1C24)]
@@ -35,6 +38,7 @@ class SongDisc extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: const Color(0xff33333E),
+              /// El borde no puede ser un gradiente y esta aparte del color (por fuera)
               border: Border.all(
                 color: const Color(0xFF5A5A5A), 
                 width: _centerBorderWidth

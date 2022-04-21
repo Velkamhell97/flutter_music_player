@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../extensions/duration_api.dart';
 import '../models/song.dart';
 import '../notifiers/song_notifier.dart';
-import '../widgets/song_disc.dart';
+import '../widgets/widgets.dart';
 
 class MusicPlayer extends StatefulWidget {
   const MusicPlayer({Key? key}) : super(key: key);
@@ -30,10 +30,14 @@ class _MusicPlayerState extends State<MusicPlayer> with TickerProviderStateMixin
     _controller = AnimationController(vsync: this);
     _playController = AnimationController(vsync: this, duration: _playDuration);
 
+    /// Asignamos la duracion de la cancion a el controller pa que la animacion del rotatcion termine con ella
     _songNotifier.onSongLoaded((songDuration) {
+      /// Se le puede definir la duracion como un setter
       _controller.duration = songDuration;
     });
 
+    /// Cuando termine la animacion de rotacion (que es igual que la cancion) cambia a play la animacion del
+    /// boton y resetea la del disco
     _controller.addStatusListener((status) {
       if(status == AnimationStatus.completed){
         _playController.reverse();
@@ -49,6 +53,7 @@ class _MusicPlayerState extends State<MusicPlayer> with TickerProviderStateMixin
     super.dispose();
   }
 
+  /// Paramos o continuamos la animacion del disco, para la del boton hacemos un forward o reverse
   void _togglePlay() {
     if(_controller.isAnimating){
       _controller.stop();
@@ -63,6 +68,7 @@ class _MusicPlayerState extends State<MusicPlayer> with TickerProviderStateMixin
     }
   }
 
+  /// Pausamos o reanudamos la cancion, esto tambien cambia la duracion del scroll de la lista
   Future<void> _playerToggle() async {
     _songNotifier.toggle();
     _songNotifier.toggleLirycs();
@@ -80,6 +86,8 @@ class _MusicPlayerState extends State<MusicPlayer> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
+    /// El diametro del circulo tambien es la longitud de la barra de progreso
     final discRadius = size.height * 0.25;
 
     return Column(
@@ -119,8 +127,9 @@ class _MusicPlayerState extends State<MusicPlayer> with TickerProviderStateMixin
                     ),
                     const SizedBox(height: _textSpacing),
                     SizedBox(
+                      /// La barra de progreso es un poco mas larga que el disco, si el disco aumenta la barra tambien
                       height: discRadius + 20,
-                      child: RotatedBox(
+                      child: RotatedBox( /// Para girar el LinearProgress
                         quarterTurns: 3,
                         child: Selector<SongNotifier, double>(
                           selector: (_, model) => model.progress,
@@ -156,7 +165,7 @@ class _MusicPlayerState extends State<MusicPlayer> with TickerProviderStateMixin
               // Info
               //-------------------------
               Expanded(
-                flex: 4,
+                flex: 4, /// Iguales que arriba para que se alineen
                 child: Column(
                   children: [
                     Text(_song.title, style: _titleStyle),

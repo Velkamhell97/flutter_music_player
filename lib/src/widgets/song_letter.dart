@@ -13,12 +13,10 @@ class SongLetter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final songProvider = Provider.of<SongNotifier>(context, listen: false);
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: ListWheelScrollView.useDelegate(
-        controller: songProvider.lirycsController,
+        controller: context.read<SongNotifier>().lirycsController,
         physics: const NeverScrollableScrollPhysics(),
         itemExtent: 40,
         diameterRatio: 1.5,

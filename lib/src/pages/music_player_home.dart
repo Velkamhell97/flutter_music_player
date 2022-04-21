@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../notifiers/song_notifier.dart';
 import '../models/song.dart';
-import '../widgets/song_letter.dart';
-import '../widgets/music_player.dart';
+import '../widgets/widgets.dart';
 
 class MusicPlayerHome extends StatelessWidget {
   const MusicPlayerHome({Key? key}) : super(key: key);
@@ -62,7 +61,6 @@ class MusicPlayerHome extends StatelessWidget {
   }
 }
 
-//-- Background 1
 class _Background1 extends StatelessWidget {
   const _Background1({Key? key}) : super(key: key);
 
@@ -76,7 +74,6 @@ class _Background1 extends StatelessWidget {
   }
 }
 
-//-- Background 2
 class _Background2 extends StatelessWidget {
   const _Background2({Key? key}) : super(key: key);
 
@@ -97,7 +94,6 @@ class _Background2 extends StatelessWidget {
   }
 }
 
-//-- Appbar
 class _AppBar extends StatelessWidget {
   const _AppBar({Key? key}) : super(key: key);
 
